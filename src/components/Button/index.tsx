@@ -6,9 +6,11 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ text }) => {
-    return (<ButtonWrapper>
-        <h1>{text}</h1>
-    </ButtonWrapper>)
-}
+    return (
+        <ButtonWrapper>
+            <h1>{text}</h1>
+        </ButtonWrapper>
+    );
+};
 
 export default Button;
