@@ -5,16 +5,16 @@ const Home = lazy(() => import('./page/Home'));
 
 function App() {
     return (
-        <Switch>
-            <Route exact path="/">
-                <Suspense fallback={<></>}>
+        <Suspense fallback={<></>}>
+            <Switch>
+                <Route exact path="/">
                     <Home />
-                </Suspense>
-            </Route>
-            <Route path="*">
-                <Redirect to="/" />
-            </Route>
-        </Switch>
+                </Route>
+                <Route path="*">
+                    <Redirect to="/" />
+                </Route>
+            </Switch>
+        </Suspense>
     );
 }
 
