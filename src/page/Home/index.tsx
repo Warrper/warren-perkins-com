@@ -1,9 +1,9 @@
-import React from 'react';
+import { FunctionalComponent } from 'preact';
 import { HomeWrapper } from './index.css';
 
 interface HomeProps {}
 
-const Home: React.FC<HomeProps> = () => {
+const Home: FunctionalComponent<HomeProps> = () => {
     return <HomeWrapper>Home Page</HomeWrapper>;
 };
 

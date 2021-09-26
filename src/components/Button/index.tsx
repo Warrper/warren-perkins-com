@@ -1,11 +1,11 @@
-import React from 'react';
+import { FunctionalComponent } from 'preact';
 import { ButtonWrapper } from './index.css';
 
 interface ButtonProps {
     text: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ text }) => {
+const Button: FunctionalComponent<ButtonProps> = ({ text }) => {
     return (
         <ButtonWrapper>
             <h1>{text}</h1>
