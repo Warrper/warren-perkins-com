@@ -9,6 +9,7 @@ interface TypeWriterProps {
     delayStart?: number;
     noBlink?: boolean;
     noCursor?: boolean;
+    fontSize?: string;
 }
 
 const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
@@ -18,6 +19,7 @@ const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
     delayStart,
     noBlink,
     noCursor,
+    fontSize,
 }) => {
     const [show, setShow] = useState(false);
     const startTimeRef = useRef<NodeJS.Timeout>();
@@ -40,6 +42,7 @@ const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
             characterCount={text.length}
             typeSpeed={typeSpeed ? typeSpeed : 1000}
             blinkSpeed={blinkSpeed ? blinkSpeed : 500}
+            fontSize={fontSize}
         >
             {show ? (
                 <div className={`typewriter ${noCursor ? 'no-cursor' : ''} ${noBlink ? 'no-blink' : ''}`}>{text}</div>

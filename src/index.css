@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap');
 #root {
     overflow-x: hidden;
 }
 
 html {
-    /* background-color: #1f2138; */
+    background-color: #21272c;
+    color: white;
 }

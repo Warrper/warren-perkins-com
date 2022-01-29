@@ -4,7 +4,6 @@ import { bounceIn } from '../../animations';
 export const HeaderWrapper = styled.div`
     font-family: 'Lato', sans-serif;
     width: 100vw;
-    background-color: grey;
     display: flex;
     align-items: center;
     align-content: space-between;
@@ -20,7 +19,8 @@ export const HeaderWrapper = styled.div`
         width: 100%;
         height: 100%;
         a {
-            color: black;
+            font-size: 1.5rem;
+            color: lightgray;
             text-decoration: none;
             transition: transform .2s;
             transform: scale(1);

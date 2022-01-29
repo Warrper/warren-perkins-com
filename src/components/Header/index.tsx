@@ -17,7 +17,7 @@ const Header: FunctionalComponent<HeaderProps> = () => {
                     </li>
                 </ul>
             </div>
-            <div className="center">Warren Perkins</div>
+            {/* <div className="center">Warren Perkins</div> */}
             <div className="right">
                 <ul>
                     <li>

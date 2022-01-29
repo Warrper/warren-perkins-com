@@ -29,6 +29,7 @@ interface TypeWriterWrapperProps {
     characterCount: number;
     typeSpeed: number;
     blinkSpeed: number;
+    fontSize?: string
 }
 
 export const TypeWriterWrapper = styled.div<TypeWriterWrapperProps>`
@@ -42,8 +43,8 @@ export const TypeWriterWrapper = styled.div<TypeWriterWrapperProps>`
         white-space: nowrap;
         overflow: hidden;
         border-right: 3px solid;
-        font-family: monospace;
-        font-size: 2em;
+        font-family: 'Inconsolata', monospace;
+        font-size: ${props => props.fontSize ? props.fontSize : '2rem'};
         &.no-blink {
           border-right: transparent;
           animation: ${typing} ${(props) => props.typeSpeed}ms steps(${(props) => props.characterCount}), ${solidCaret} ${(props) => props.typeSpeed}ms;
