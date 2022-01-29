@@ -1,19 +1,17 @@
 import { lazy, Suspense } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 const Home = lazy(() => import('./page/Home'));
+const NotFound = lazy(() => import('./page/NotFound'));
 
 function App() {
     return (
         <Suspense fallback={<></>}>
-            <Switch>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route path="*">
-                    <Redirect to="/" />
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/404" element={<NotFound />} />
+                <Route path="*" element={<Navigate to="/404" />} />
+            </Routes>
         </Suspense>
     );
 }
