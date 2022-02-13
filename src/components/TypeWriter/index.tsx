@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FunctionalComponent } from 'preact';
 import { TypeWriterWrapper } from './index.css';
+import useDelay from '../../hooks/useDelay';
 
 interface TypeWriterProps {
     text: string;
@@ -21,21 +22,7 @@ const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
     noCursor,
     fontSize,
 }) => {
-    const [show, setShow] = useState(false);
-    const startTimeRef = useRef<NodeJS.Timeout>();
-
-    useEffect(() => {
-        if (delayStart) {
-            startTimeRef.current = setTimeout(() => {
-                setShow(true);
-            }, delayStart);
-        } else {
-            setShow(true);
-        }
-        return () => {
-            clearTimeout(startTimeRef.current as any);
-        };
-    }, [delayStart]);
+    const show = useDelay(delayStart ? delayStart : 0);
 
     return (
         <TypeWriterWrapper
