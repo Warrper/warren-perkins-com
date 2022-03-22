@@ -2,22 +2,26 @@ import styled, { keyframes } from 'styled-components';
 
 const animation = keyframes`
   0% {
-    opacity: 0;
+    transform: translateY(200%);
   }
   100% {
-    opacity: 1;
+    transform: translateY(0);
   }
-`
+`;
 
 export const LargeCardWrapper = styled.div`
-    margin-top: 4rem;
     padding: 0 5rem 0 5rem;
-    animation: ${animation} 3500ms ;
+    overflow: hidden;
+    margin: 0 12rem;
     h1 {
-        font-size: 2rem;
+        font-size: 3rem;
+        animation: ${animation} 1000ms;
+        color: #00EDFF;
     }
     p {
-            text-align: left;
-            font-size: 1.2rem;
+        animation: ${animation} 1000ms;
+        text-align: left;
+        font-size: 2rem;
+        color: #D9EEFF;
     }
 `;

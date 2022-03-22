@@ -19,6 +19,7 @@ const Hero: FunctionalComponent<HeroProps> = () => {
             <TypeWriter
                 fontSize={isMobile ? '3rem' : '5rem'}
                 text={'Warren Perkins'}
+                color={'#00EDFF'}
                 typeSpeed={1000}
                 delayStart={700}
                 noBlink={true}

@@ -11,6 +11,7 @@ interface TypeWriterProps {
     noBlink?: boolean;
     noCursor?: boolean;
     fontSize?: string;
+    color?: string;
 }
 
 const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
@@ -21,6 +22,7 @@ const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
     noBlink,
     noCursor,
     fontSize,
+    color,
 }) => {
     const show = useDelay(delayStart ? delayStart : 0);
 
@@ -30,6 +32,7 @@ const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
             typeSpeed={typeSpeed ? typeSpeed : 1000}
             blinkSpeed={blinkSpeed ? blinkSpeed : 500}
             fontSize={fontSize}
+            color={color}
         >
             {show ? (
                 <div className={`typewriter ${noCursor ? 'no-cursor' : ''} ${noBlink ? 'no-blink' : ''}`}>{text}</div>

@@ -30,6 +30,7 @@ interface TypeWriterWrapperProps {
     typeSpeed: number;
     blinkSpeed: number;
     fontSize?: string
+    color?: string;
 }
 
 export const TypeWriterWrapper = styled.div<TypeWriterWrapperProps>`
@@ -37,6 +38,7 @@ export const TypeWriterWrapper = styled.div<TypeWriterWrapperProps>`
     align-items: center;
     justify-content: center;
     .typewriter {
+        color: ${(props) => props.color ? props.color : 'inherit'};
         width: ${(props) => props.characterCount}ch;
         animation: ${typing} ${(props) => props.typeSpeed}ms steps(${(props) => props.characterCount}),
             ${blinkCaret} ${(props) => props.blinkSpeed}ms infinite step-end alternate;
