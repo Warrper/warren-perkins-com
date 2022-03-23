@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { mediaQueries } from '../../constants';
+import { mq } from '../../constants';
 
 const animation = keyframes`
   0% {
@@ -26,7 +26,7 @@ export const LargeCardWrapper = styled.div`
         color: #D9EEFF;
     }
 
-    @media ${mediaQueries.DESKTOP} {
+    @media ${mq('lg')} {
       h1 {
         font-size: 2.5rem;
       }
@@ -35,7 +35,7 @@ export const LargeCardWrapper = styled.div`
       }
     }
 
-    @media ${mediaQueries.XL_PHONE} {
+    @media ${mq('sm')} {
       h1 {
         font-size: 2rem;
       }
