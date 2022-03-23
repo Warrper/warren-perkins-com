@@ -2,13 +2,14 @@ import { FunctionalComponent } from 'preact';
 import { HeroWrapper } from './index.css';
 import TypeWriter from '../TypeWriter';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import { mediaQueries } from '../../constants';
 
 interface HeroProps {
     animate: boolean;
 }
 
 const Hero: FunctionalComponent<HeroProps> = ({ animate }) => {
-    const isMobile = useMediaQuery('(max-width: 600px)');
+    const isMobile = useMediaQuery(mediaQueries.XL_PHONE);
     return (
         <HeroWrapper>
             <TypeWriter

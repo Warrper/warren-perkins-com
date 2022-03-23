@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { mediaQueries } from '../../constants';
 
 const animation = keyframes`
   0% {
@@ -10,18 +11,37 @@ const animation = keyframes`
 `;
 
 export const LargeCardWrapper = styled.div`
-    padding: 0 5rem 0 5rem;
+    padding: 0 5vw 0 5vw;
     overflow: hidden;
-    margin: 0 12rem;
+    margin: 0 5vw;
     h1 {
         font-size: 3rem;
-        animation: ${animation} 1000ms;
+        animation: ${animation} 1500ms;
         color: #00EDFF;
     }
     p {
-        animation: ${animation} 1000ms;
+        animation: ${animation} 1500ms;
         text-align: left;
         font-size: 2rem;
         color: #D9EEFF;
     }
+
+    @media ${mediaQueries.DESKTOP} {
+      h1 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.25rem
+      }
+    }
+
+    @media ${mediaQueries.XL_PHONE} {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.25rem
+      }
+    }
+
 `;
