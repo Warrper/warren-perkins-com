@@ -4,7 +4,7 @@ import { LargeCardWrapper } from './index.css';
 
 interface LargeCardProps {
     title: string;
-    content: string;
+    content: JSX.Element;
     delay: number;
 }
 
@@ -16,7 +16,7 @@ const LargeCard: FunctionalComponent<LargeCardProps> = ({ title, content, delay 
             {show ? (
                 <LargeCardWrapper>
                     <h1>{title}</h1>
-                    <p>{content}</p>
+                    {content}
                 </LargeCardWrapper>
             ) : null}
         </>

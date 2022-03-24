@@ -8,5 +8,5 @@ export const breakpoints = {
 };
 
 export const mq = (size: 'xsm' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl') => {
-    return `(max-width: ${breakpoints[size]})`
+    return `(max-width: ${breakpoints[size]}px)`
 } 

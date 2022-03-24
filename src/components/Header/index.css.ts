@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { bounceIn } from '../../animations';
 
 export const HeaderWrapper = styled.div`
     font-family: 'Lato', sans-serif;
@@ -42,10 +41,5 @@ export const HeaderWrapper = styled.div`
     div {
         width: 100%;
         height: 100%;
-        &.center {
-            animation: ${bounceIn} 0.75s linear;
-            font-size: 2.5rem;
-            text-align: center;
-        }
     }
 `;
