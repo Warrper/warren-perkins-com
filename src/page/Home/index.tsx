@@ -34,8 +34,8 @@ const Home: FunctionalComponent<HomeProps> = () => {
                             time developer for over 2 years.
                         </p>
                         <p>
-                            While working I have the chance to work with a wide range of frontend and backend
-                            technologies including:
+                            While working I have had the chance to use a wide range of frontend and backend technologies
+                            including:
                         </p>
                         <ul>
                             <li>React</li>
