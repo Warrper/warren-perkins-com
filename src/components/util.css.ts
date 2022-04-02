@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-interface ICardWrapper {
+interface IFlexWrapper {
 	justifyContent?: string;
+	margin?: string;
 }
 
-export const CardWrapper = styled.div<ICardWrapper>`
+export const FlexWrapper = styled.div<IFlexWrapper>`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: ${(props) => props.justifyContent ? props.justifyContent : 'center'};
 	width: 100%;
-	margin: 20px 0 80px;
+	margin: ${(props) => props.margin ? props.margin : '20px 0 80px'};
 `
