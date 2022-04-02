@@ -2,18 +2,21 @@ import { FunctionalComponent } from 'preact';
 import { useEffect } from 'react';
 import { HomeWrapper } from './index.css';
 import Header from '../../components/Header';
-import Hero from '../../components/Hero';
 import { browserStore } from '../../utils/browserStore';
 import LargeCard from '../../components/LargeCard';
 import Button from '../../components/Button';
 import { CardWrapper } from '../../components/util.css';
 import { useNavigate } from 'react-router-dom';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import { mq } from '../../constants';
+import TypeWriter from '../../components/TypeWriter';
 
 interface HomeProps {}
 
 const Home: FunctionalComponent<HomeProps> = () => {
     const navigate = useNavigate();
     const hasSeenAnimation = browserStore.get('sessionStorage', 'hasSeenAnimation');
+    const isMobile = useMediaQuery(mq('md'));
 
     useEffect(() => {
         browserStore.set('sessionStorage', 'hasSeenAnimation', 'true');
@@ -22,7 +25,27 @@ const Home: FunctionalComponent<HomeProps> = () => {
     return (
         <HomeWrapper>
             <Header />
-            <Hero animate={!hasSeenAnimation} />
+            <TypeWriter
+                fontSize={isMobile ? '3rem' : '5rem'}
+                text={"Hi, I'm"}
+                typeSpeed={!hasSeenAnimation ? 600 : 0.0001}
+                delayStart={0}
+                noBlink={true}
+            />
+            <TypeWriter
+                fontSize={isMobile ? '3rem' : '5rem'}
+                text={'Warren Perkins'}
+                color={'#00EDFF'}
+                typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
+                delayStart={!hasSeenAnimation ? 700 : 0}
+                noBlink={true}
+            />
+            <TypeWriter
+                fontSize={isMobile ? '1rem' : '2rem'}
+                text={`I'm a developer.`}
+                typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
+                delayStart={!hasSeenAnimation ? 2200 : 0}
+            />
 
             <LargeCard
                 title="About Me"
