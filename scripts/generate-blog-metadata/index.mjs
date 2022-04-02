@@ -1,7 +1,7 @@
 import getBlogSlugs from "./utils/getBlogSlugs.mjs";
 import getBlogMetadata from "./utils/getBlogMetadata.mjs";
 import createTagsApi from './utils/createTagsApi.mjs';
-import createPagesApi from './utils/createPagesApi.mjs';
+import createPostsApi from './utils/createPostsApi.mjs';
 import fastSort from 'fast-sort';
 import createBaseApi from "./utils/createBaseApi.mjs";
 const { sort } = fastSort;
@@ -17,11 +17,11 @@ async function main() {
 
     const sorted = sort(blogPostsMetadata).desc(p => p.created);
 
-    const tagNames = createTagsApi(sorted);
-    const pages = createPagesApi(sorted);
+    const tags = createTagsApi(sorted);
+    const posts = createPostsApi(sorted);
     createBaseApi({
-        tags: tagNames,
-        pageCount: pages.length
+        tags,
+        posts,
     });
 }
 main();

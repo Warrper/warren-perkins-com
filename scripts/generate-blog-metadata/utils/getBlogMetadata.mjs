@@ -1,6 +1,7 @@
 import readline from 'readline';
 import fs from 'fs';
 import yaml from 'js-yaml';
+import constants from '../constants/constants.mjs'
 
 export default async function getBlogMetadata(slug) {
     const blogDir = './content/blog';
@@ -33,5 +34,5 @@ export default async function getBlogMetadata(slug) {
 
     const parsedMetadata = yaml.load(metadata);
 
-    return { ...parsedMetadata, slug, content: `https://warrenperkins.com/content/blog/${slug}.md`};
+    return { ...parsedMetadata, slug, content: `${constants.baseUrl}/content/blog/${slug}.md`};
 }
