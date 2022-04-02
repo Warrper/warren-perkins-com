@@ -25,7 +25,7 @@ const Home: FunctionalComponent<HomeProps> = () => {
 
     return (
         <HomeWrapper>
-            <Header />
+            <Header currentPage="home" />
             <TypeWriter
                 fontSize={isMobile ? '3rem' : '5rem'}
                 text={"Hi, I'm"}
