@@ -1,4 +1,6 @@
 #!/bin/bash
+cp robots.txt ./dist/robots.txt
+cp meta-image.png ./dist/assets/meta-image.png
 aws s3 sync ./dist s3://warrenperkinscom
 aws s3 rm s3://warrenperkinscom/content --recursive
 aws s3 sync ./content s3://warrenperkinscom/content
