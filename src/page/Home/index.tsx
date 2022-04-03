@@ -19,10 +19,6 @@ const Home: FunctionalComponent<HomeProps> = () => {
     const isMobile = useMediaQuery(mq('md'));
     const showMainContent = useDelay(hasSeenAnimation ? 0 : 3000);
 
-    useEffect(() => {
-        browserStore.set('sessionStorage', 'hasSeenAnimation', 'true');
-    }, []);
-
     return (
         <HomeWrapper>
             <Header currentPage="home" />
@@ -47,6 +43,9 @@ const Home: FunctionalComponent<HomeProps> = () => {
                     text={`I'm a developer.`}
                     typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
                     delayStart={!hasSeenAnimation ? 2200 : 0}
+                    onEnd={() => {
+                        browserStore.set('sessionStorage', 'hasSeenAnimation', 'true');
+                    }}
                 />
             </div>
 
