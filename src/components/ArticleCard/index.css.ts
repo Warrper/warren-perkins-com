@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
-export const ArticleCardWrapper = styled.div`
+interface IArticleCardWrapper {
+    isMobile?: boolean;
+}
+
+export const ArticleCardWrapper = styled.div<IArticleCardWrapper>`
     margin: 30px;
+    width: 300px;
+    height: 400px;
 
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
     &:hover {
@@ -26,26 +32,21 @@ export const ArticleCardWrapper = styled.div`
     }
 
     figure {
+        width: 100%;
+        height: 100%;
         position: relative;
-        max-height: 400px;
         overflow: hidden;
         margin: 0px;
 
-        /* Desktop */
-        max-height: 500px;
-
         &::after {
             position: absolute;
-            top: 0;
+            top: ${props => props.isMobile ? '0' : 'calc(100% - 140px)'};
             display: block;
             content: '';
             width: 100%;
             height: 100%;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 40%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
             transition: 0.3s;
-
-            /* Desktop */
-            top: calc(100% - 140px);
         }
     }
 
@@ -55,47 +56,39 @@ export const ArticleCardWrapper = styled.div`
 
     figcaption {
         position: absolute;
-        top: 50%;
+        top: ${props => props.isMobile ? '50%' : 'calc(100% - 130px)'};
+        left: 1rem;
         z-index: 1;
-        padding: 0 20px;
         color: white;
-        transform: translateY(-50%);
-        text-align: center;
+        transform: ${props => props.isMobile ? 'translateY(-50%)' : 'unset'};
+        text-align: left;
         transition: 0.3s;
-
-        /* Desktop */
-        top: calc(100% - 110px);
-        transform: unset;
+        width: 100%;
+        margin: 0 auto;
     }
 
     h2 {
-        display: -webkit-box;
-        max-height: 85px;
+        width: 100%;
+        margin: 0;
+        height: 130px;
         overflow: hidden;
         font-family: 'Inconsolata', monospace;
-        font-size: 23px;
+        font-size: 1.75rem;
         line-height: 28px;
         text-shadow: 0px 1px 5px black;
         text-overflow: ellipsis;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
     }
 
     p {
-        display: -webkit-box;
-        max-height: 150px;
-        margin: 20px 0;
+        line-height: 1.3rem;
+        max-height: 5.3rem;
+        width: 80%;
+        margin: 0;
         overflow: hidden;
         font-family: 'Lato', sans-serif;
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 1rem;
         text-overflow: ellipsis;
         transition: 0.5s ease-in-out;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-
-        /* Desktop */
-        margin: 60px 0;
     }
 
     a {
@@ -104,10 +97,11 @@ export const ArticleCardWrapper = styled.div`
         color: white;
         border: 1px solid white;
         font-family: 'Lato', sans-serif;
-        font-size: 12px;
+        font-size: 1.25rem;
         text-transform: uppercase;
         text-decoration: none;
         transition: 0.3s;
+        margin-top: 1rem;
 
         &:hover {
             color: black;

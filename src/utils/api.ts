@@ -1,6 +1,6 @@
 import { siteUrl } from "../constants";
 
-interface BlogPostMetadata {
+export interface BlogPostMetadata {
     title: string;
     description: string;
     created: string;
@@ -9,7 +9,7 @@ interface BlogPostMetadata {
     tags: string[];
 }
 
-interface BlogBaseApi {
+export interface BlogBaseApi {
     tags: string[];
     tagsLocation: string;
     posts: string[];
