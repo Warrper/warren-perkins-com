@@ -1,15 +1,16 @@
 import { siteUrl } from "../constants";
 
-interface BlogPostMetadata {
+export interface BlogPostMetadata {
     title: string;
     description: string;
     created: string;
     slug: string;
     content: string;
     tags: string[];
+    thumbnail: string;
 }
 
-interface BlogBaseApi {
+export interface BlogBaseApi {
     tags: string[];
     tagsLocation: string;
     posts: string[];
@@ -31,8 +32,14 @@ async function fetchBlogTag(blogBase: BlogBaseApi, slug: string): Promise<string
     return res;
 }
 
+async function fetchBlogPostContent(postData: BlogPostMetadata): Promise<string> {
+    const res = await fetch(`${siteUrl}${postData.content}`).then((res) => res.text());
+    return res;
+}
+
 export default {
     fetchBlogBase,
     fetchBlogPostMetadata,
-    fetchBlogTag
+    fetchBlogTag,
+    fetchBlogPostContent
 }

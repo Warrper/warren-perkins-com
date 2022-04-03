@@ -1,4 +1,6 @@
 import { FunctionalComponent } from 'preact';
+import { mq } from '../../constants';
+import useMediaQuery from '../../hooks/useMediaQuery';
 import { ArticleCardWrapper } from './index.css';
 
 interface ArticleCardProps {
@@ -15,8 +17,9 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: FunctionalComponent<ArticleCardProps> = ({ img, title, content, button }) => {
+    const isMobile = useMediaQuery(mq('lg'));
     return (
-        <ArticleCardWrapper>
+        <ArticleCardWrapper isMobile={isMobile}>
             <figure>
                 <img src={img.src} alt={img.alt} />
                 <figcaption>
