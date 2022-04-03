@@ -26,27 +26,29 @@ const Home: FunctionalComponent<HomeProps> = () => {
     return (
         <HomeWrapper>
             <Header currentPage="home" />
-            <TypeWriter
-                fontSize={isMobile ? '3rem' : '5rem'}
-                text={"Hi, I'm"}
-                typeSpeed={!hasSeenAnimation ? 600 : 0.0001}
-                delayStart={0}
-                noBlink={true}
-            />
-            <TypeWriter
-                fontSize={isMobile ? '3rem' : '5rem'}
-                text={'Warren Perkins'}
-                color={'#00EDFF'}
-                typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
-                delayStart={!hasSeenAnimation ? 700 : 0}
-                noBlink={true}
-            />
-            <TypeWriter
-                fontSize={isMobile ? '1rem' : '2rem'}
-                text={`I'm a developer.`}
-                typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
-                delayStart={!hasSeenAnimation ? 2200 : 0}
-            />
+            <div>
+                <TypeWriter
+                    fontSize={isMobile ? '3rem' : '5rem'}
+                    text={"Hi, I'm"}
+                    typeSpeed={!hasSeenAnimation ? 600 : 0.0001}
+                    delayStart={0}
+                    noBlink={true}
+                />
+                <TypeWriter
+                    fontSize={isMobile ? '3rem' : '5rem'}
+                    text={'Warren Perkins'}
+                    color={'#00EDFF'}
+                    typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
+                    delayStart={!hasSeenAnimation ? 700 : 0}
+                    noBlink={true}
+                />
+                <TypeWriter
+                    fontSize={isMobile ? '1rem' : '2rem'}
+                    text={`I'm a developer.`}
+                    typeSpeed={!hasSeenAnimation ? 1000 : 0.0001}
+                    delayStart={!hasSeenAnimation ? 2200 : 0}
+                />
+            </div>
 
             {showMainContent ? (
                 <div className="main-content">
