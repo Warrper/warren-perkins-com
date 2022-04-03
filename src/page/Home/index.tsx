@@ -80,8 +80,8 @@ const Home: FunctionalComponent<HomeProps> = () => {
                     </ul>
                     <div style={{ marginTop: '8vh' }}></div>
                     <FlexWrapper justifyContent="space-evenly">
-                        <Button onClick={() => navigate('./projects')} text="Check out my Projects" />
                         <Button onClick={() => navigate('./blog')} text="Read more on my blog" />
+                        <Button onClick={() => navigate('./projects')} text="Check out my Projects" />
                     </FlexWrapper>
                 </div>
             ) : null}

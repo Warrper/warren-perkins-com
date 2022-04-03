@@ -45,13 +45,14 @@ export const ArticleCardWrapper = styled.div<IArticleCardWrapper>`
             content: '';
             width: 100%;
             height: 100%;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
             transition: 0.3s;
         }
     }
 
     img {
         transition: 0.5s ease-in-out;
+        filter: brightness(80%);
     }
 
     figcaption {

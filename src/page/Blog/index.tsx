@@ -24,11 +24,11 @@ const Blog: FunctionComponent<BlogProps> = () => {
     return (
         <BlogWrapper>
             <Header currentPage="blog" />
-            {posts.map((post) => (
-                <FlexWrapper justifyContent={`${centerContent ? 'center' : 'flex-start'}`}>
+            <FlexWrapper justifyContent={`${centerContent ? 'center' : 'flex-start'}`}>
+                {posts.map((post) => (
                     <ArticleCard
                         img={{
-                            src: 'https://picsum.photos/400/500',
+                            src: post.thumbnail,
                             alt: post.title,
                         }}
                         title={post.title}
@@ -38,8 +38,8 @@ const Blog: FunctionComponent<BlogProps> = () => {
                             link: `/blog/${post.slug}`,
                         }}
                     />
-                </FlexWrapper>
-            ))}
+                ))}
+            </FlexWrapper>
         </BlogWrapper>
     );
 };

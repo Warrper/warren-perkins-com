@@ -7,6 +7,7 @@ export interface BlogPostMetadata {
     slug: string;
     content: string;
     tags: string[];
+    thumbnail: string;
 }
 
 export interface BlogBaseApi {
@@ -31,8 +32,14 @@ async function fetchBlogTag(blogBase: BlogBaseApi, slug: string): Promise<string
     return res;
 }
 
+async function fetchBlogPostContent(postData: BlogPostMetadata): Promise<string> {
+    const res = await fetch(`${siteUrl}${postData.content}`).then((res) => res.text());
+    return res;
+}
+
 export default {
     fetchBlogBase,
     fetchBlogPostMetadata,
-    fetchBlogTag
+    fetchBlogTag,
+    fetchBlogPostContent
 }
