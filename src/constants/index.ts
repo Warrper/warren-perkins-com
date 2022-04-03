@@ -10,3 +10,5 @@ export const breakpoints = {
 export const mq = (size: 'xsm' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl') => {
     return `(max-width: ${breakpoints[size]}px)`
 } 
+
+export const siteUrl = import.meta.env.DEV ? 'http://localhost:3000' : 'https://warrenperkins.com';
