@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { FunctionalComponent } from 'preact';
 import { TypeWriterWrapper } from './index.css';
 import useDelay from '../../hooks/useDelay';
@@ -12,6 +12,7 @@ interface TypeWriterProps {
     noCursor?: boolean;
     fontSize?: string;
     color?: string;
+    onEnd?: () => void;
 }
 
 const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
@@ -23,8 +24,19 @@ const TypeWriter: FunctionalComponent<TypeWriterProps> = ({
     noCursor,
     fontSize,
     color,
+    onEnd,
 }) => {
-    const show = useDelay(delayStart ? delayStart : 0);
+    const delay = delayStart ? delayStart : 0;
+    const speed = typeSpeed ? typeSpeed : 0;
+
+    const show = useDelay(delay);
+    const animationEnded = useDelay(delay + speed);
+
+    useEffect(() => {
+        if (animationEnded && onEnd) {
+            onEnd();
+        }
+    }, [animationEnded]);
 
     return (
         <TypeWriterWrapper
