@@ -18,3 +18,7 @@ This blog section is still a work in progress
 ---
 
 Please come back in the future to see some actual content :)
+
+```js
+console.log('Hello World');
+```
