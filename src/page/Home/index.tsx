@@ -53,7 +53,7 @@ const Home: FunctionalComponent<HomeProps> = () => {
                 <div className="main-content">
                     <h1>About Me</h1>
                     <p>
-                        I'm a full stack web developer from the north of england. I currently work at the advertising
+                        I'm a full stack web developer from the North of England. I currently work at the advertising
                         agency <a href="https://havaslynx.com/">Havas Lynx</a>, where I have been a full time developer
                         for over 2 years.
                     </p>
