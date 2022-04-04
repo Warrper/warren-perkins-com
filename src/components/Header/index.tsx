@@ -22,14 +22,15 @@ const Header: FunctionalComponent<HeaderProps> = ({ currentPage }) => {
                     <li className={`${currentPage === 'blog' ? 'active' : ''}`}>
                         <Link to="/blog">Blog</Link>
                     </li>
-                    <li className={`${currentPage === 'projects' ? 'active' : ''}`}>
+                    {/* <li className={`${currentPage === 'projects' ? 'active' : ''}`}>
                         <Link to="/projects">Projects</Link>
-                    </li>
+                    </li> */}
+
+                    {/* <li className={`${currentPage === 'contact' ? 'active' : ''}`}>
+                        <Link to="/contact">Contact</Link>
+                    </li> */}
                     <li>
                         <a href="https://github.com/warrper">Github</a>
-                    </li>
-                    <li className={`${currentPage === 'contact' ? 'active' : ''}`}>
-                        <Link to="/contact">Contact</Link>
                     </li>
                 </ul>
             </div>
