@@ -59,7 +59,7 @@ import * as apiGateway from './apiGateway';
         orderedCacheBehaviors: [
             {
                 allowedMethods: ['GET', 'HEAD','OPTIONS'],
-                cachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
+                cachePolicyId: '3657991d-c8a7-4f3b-8f60-632ed7fdf17f',
                 cachedMethods: ['GET', 'HEAD', 'OPTIONS'],
                 compress: true,
                 minTtl: 0,
@@ -69,7 +69,7 @@ import * as apiGateway from './apiGateway';
             },
             {
                 allowedMethods: ['GET', 'HEAD','OPTIONS'],
-                cachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
+                cachePolicyId: '3657991d-c8a7-4f3b-8f60-632ed7fdf17f',
                 cachedMethods: ['GET', 'HEAD', 'OPTIONS'],
                 compress: true,
                 minTtl: 0,
