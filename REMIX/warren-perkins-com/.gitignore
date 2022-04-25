@@ -3,6 +3,7 @@ node_modules
 /.cache
 /build
 /public/_static
+/public/build
 .env
 remix.config.js
 /server
