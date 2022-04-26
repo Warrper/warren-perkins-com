@@ -5,9 +5,13 @@
   "license": "",
   "sideEffects": false,
   "scripts": {
-    "build": "del ./remix.config.js && cp prod.remix.config.js remix.config.js && remix build",
-    "dev": "del ./remix.config.js && cp dev.remix.config.js remix.config.js && remix dev",
-    "start": "remix-serve build"
+    "build": "npm run build:css && del ./remix.config.js && cp prod.remix.config.js remix.config.js && remix build",
+    "build:css": "tailwindcss -m -i ./tailwind-input.css -o app/styles/tailwind.css",
+    "dev": "del ./remix.config.js && cp dev.remix.config.js remix.config.js && concurrently \"npm run dev:css\" \"remix dev\"",
+    "dev:css": "tailwindcss -w -i  ./tailwind-input.css -o app/styles/tailwind.css",
+    "start": "remix-serve build",
+    "storybook": "concurrently \"start-storybook -p 6006\" \"npm run dev:css\"",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@remix-run/architect": "^1.4.1",
@@ -20,11 +24,23 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
     "@remix-run/dev": "^1.4.1",
     "@remix-run/eslint-config": "^1.4.1",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "autoprefixer": "^10.4.5",
+    "babel-loader": "^8.2.5",
+    "concurrently": "^7.1.0",
     "eslint": "^8.11.0",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24",
     "typescript": "^4.5.5"
   },
   "engines": {

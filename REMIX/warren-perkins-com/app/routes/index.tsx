@@ -1,23 +1,11 @@
-import type { LinksFunction } from "@remix-run/node";
-
-import styles from "~/styles/test.css";
-
-export function links() {
-  return [
-    {
-      rel: 'stylesheet',
-      href: styles
-    }
-  ]
-}
-
 export default function Index() {
-  return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <p>
-        This is a simple example of a React app running inside Remix.
-      </p>
-    </div>
-  );
+    return (
+        <div className="w-full text-center">
+            <h1 className="text-neon-blue text-3xl my-4">Tailwind.css test</h1>
+            <p className="text-xl p-8">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed non, iusto aperiam hic beatae doloremque
+                ipsa molestiae sunt magni iure.
+            </p>
+        </div>
+    );
 }

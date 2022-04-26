@@ -7,3 +7,5 @@ node_modules
 .env
 remix.config.js
 /server
+
+/app/styles/tailwind.css

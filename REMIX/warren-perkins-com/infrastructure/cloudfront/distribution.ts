@@ -98,7 +98,7 @@ export async function distribution(conf: DistributionConfig) {
                     s3OriginConfig: {
                         originAccessIdentity: pulumi.interpolate`origin-access-identity/cloudfront/${oid.id}`,
                     },
-                    domainName: pulumi.interpolate`${bucket.id}.s3.eu-west-2.amazonaws.com`,
+                    domainName: pulumi.interpolate`${bucket.id}.s3.amazonaws.com`,
                     originId: `${conf.projectName}-bucket`,
                 },
             ],
