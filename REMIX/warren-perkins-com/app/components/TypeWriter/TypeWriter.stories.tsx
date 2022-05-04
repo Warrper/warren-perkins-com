@@ -7,7 +7,13 @@ export default {
 
 export const Default = (args: any) => <TypeWriter {...args} />;
 
+Default.parameters = {
+    backgrounds: { default: 'dark' },
+};
+
 Default.args = {
-    text: "Hi, I'm",
-    typeSpeed: 1000,
+    text: `I'm a developer.`,
+    typeSpeed: 1400,
+    delay: 1000,
+    noBlink: false,
 };
