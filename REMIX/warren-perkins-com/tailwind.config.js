@@ -10,7 +10,8 @@ module.exports = {
                 'dark-blue': '#21272c',
             },
             fontFamily: {
-                'inconsolata': ['Inconsolata', 'monospace']
+                'inconsolata': ['Inconsolata', 'monospace'],
+                'lato': ['Lato', 'sans-serif'],
             },
         }
     },
