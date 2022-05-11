@@ -1,11 +1,22 @@
+import { LinksFunction } from '@remix-run/node';
+import TypeWriter, { typeWriterLinks } from '~/components/TypeWriter';
+
+export const links: LinksFunction = () => [...typeWriterLinks()];
+
 export default function Index() {
     return (
-        <div className="w-full text-center">
-            <h1 className="text-neon-blue text-3xl my-4">Tailwind.css test</h1>
-            <p className="text-xl p-8">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed non, iusto aperiam hic beatae doloremque
-                ipsa molestiae sunt magni iure.
-            </p>
-        </div>
+        <>
+            <div className="w-full pt-10">
+                <TypeWriter text="Hi, I'm" typeSpeed={600} delay={0} noBlink={true} textClass="text-5xl" />
+                <TypeWriter
+                    text="Warren Perkins"
+                    typeSpeed={1000}
+                    delay={700}
+                    noBlink={true}
+                    textClass="text-neon-blue font-bold"
+                />
+                <TypeWriter text="I'm a Developer." typeSpeed={1000} delay={2000} textClass="text-3xl" />
+            </div>
+        </>
     );
 }

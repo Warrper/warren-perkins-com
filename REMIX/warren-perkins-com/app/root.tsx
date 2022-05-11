@@ -1,8 +1,22 @@
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import styles from './styles/tailwind.css';
+import Nav from '~/components/Nav';
 
 export const links: LinksFunction = () => [
+    {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+    },
+    {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true,
+    },
+    {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;800&family=Lato&display=swap',
+    },
     {
         rel: 'stylesheet',
         href: styles,
@@ -23,6 +37,15 @@ export default function App() {
                 <Links />
             </head>
             <body className="bg-dark-blue text-pale-blue">
+                <Nav
+                    navItems={[
+                        { text: 'Blog', link: '/blog' },
+                        {
+                            text: 'Gihub',
+                            link: 'https://github.com/warrper',
+                        },
+                    ]}
+                />
                 <Outlet />
                 <ScrollRestoration />
                 <Scripts />
