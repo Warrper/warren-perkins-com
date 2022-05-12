@@ -11,7 +11,7 @@ export const links: LinksFunction = () => [
     {
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
-        crossorigin: true,
+        crossOrigin: 'anonymous',
     },
     {
         rel: 'stylesheet',
@@ -46,6 +46,7 @@ export default function App() {
                         },
                     ]}
                 />
+                <div className="w-full pt-20"></div>
                 <Outlet />
                 <ScrollRestoration />
                 <Scripts />

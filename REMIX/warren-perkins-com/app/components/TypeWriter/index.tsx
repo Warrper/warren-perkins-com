@@ -14,13 +14,15 @@ interface TypeWriterProps {
 export default function TypeWriter({ textClass, text, typeSpeed, delay, noBlink }: TypeWriterProps) {
     return (
         <div
-            className="flex items-center justify-center text-white text-7xl"
+            className="flex items-center justify-center text-white text-5xl md:text-7xl spacing-default"
             style={{
                 animation: `hideShow ${delay + 50}ms`,
             }}
         >
             <div
-                className={`border-r-[3px] border-white whitespace-nowrap overflow-hidden font-inconsolata type-animation ${textClass ? textClass : ''}`}
+                className={`border-r-[3px] border-white whitespace-nowrap overflow-hidden font-inconsolata type-animation ${
+                    textClass ? textClass : ''
+                }`}
                 style={{
                     width: `${text.length}ch`,
                     borderRight: noBlink ? '3px transparent' : '3px solid',
