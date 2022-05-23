@@ -3,6 +3,7 @@ import { Link } from '@remix-run/react';
 import TypeWriter, { typeWriterLinks } from '~/components/TypeWriter';
 import TagCloud from '~/components/TagCloud';
 import Animation from '~/components/Animation';
+import Button from '~/components/Button';
 
 export const links: LinksFunction = () => [...typeWriterLinks()];
 
@@ -73,6 +74,11 @@ export default function Index() {
                             { text: 'BabylonJS' },
                         ]}
                     />
+                </Animation>
+                <Animation delay={3800} animation="animate-slide-in-up">
+                    <div className="w-full flex justify-center my-4">
+                        <Button href="/blog">Read more on my blog</Button>
+                    </div>
                 </Animation>
             </div>
         </div>
