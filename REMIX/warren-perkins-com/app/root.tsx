@@ -45,6 +45,7 @@ export default function App() {
                 <Nav
                     navItems={[
                         { text: 'Blog', link: '/blog' },
+                        { text: 'Home', link: '/', exclude: ['/'] },
                         {
                             text: 'Gihub',
                             link: 'https://github.com/warrper',
