@@ -2,6 +2,7 @@ import Button from '.';
 
 export default {
     title: 'Button',
+    argTypes: { onClick: { action: 'clicked' } },
 };
 
 const args = {};

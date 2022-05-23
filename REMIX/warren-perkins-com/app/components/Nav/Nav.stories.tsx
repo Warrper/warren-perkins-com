@@ -1,29 +1,28 @@
-import Nav from ".";
+import Nav from '.';
 
 export default {
-  title: "Nav",
-}
+    title: 'Nav',
+};
 
 const args = {
-  navItems: [
-    {
-      text: "Link One",
-      link: "/link-one"
-    },
-    {
-      text: "Link Two",
-      link: "/link-two"
-    },
-    {
-      text: "Link Three",
-      link: "/link-three"
-    }
-  ]
-}
+    navItems: [
+        {
+            text: 'Link One',
+            link: '/link-one',
+        },
+        {
+            text: 'Link Two',
+            link: '/link-two',
+        },
+        {
+            text: 'Link Three',
+            link: '/link-three',
+        },
+    ],
+};
 
-const params = {
-}
+const params = {};
 
 export const Default = (args: any) => <Nav {...args} />;
-Default.parameters = params
+Default.parameters = params;
 Default.args = args;
