@@ -21,9 +21,9 @@ const TextLink = ({ children, href }: ITextLink) => {
 
 export default function Index() {
     return (
-        <div className="w-full font-lato text-2xl md:text-3xl">
-            <div className="w-full p-10">
-                <TypeWriter text="Hi, I'm" typeSpeed={600} delay={0} noBlink={true} textClass="text-5xl" />
+        <div className="w-full font-lato text-xl md:text-3xl">
+            <div className="w-full p-4 sm:p-10">
+                <TypeWriter text="Hi, I'm" typeSpeed={600} delay={0} noBlink={true} textClass="text-4xl sm:text-5xl" />
                 <TypeWriter
                     text="Warren Perkins"
                     typeSpeed={1000}
@@ -31,11 +31,11 @@ export default function Index() {
                     noBlink={true}
                     textClass="text-neon-blue font-bold"
                 />
-                <TypeWriter text="I'm a Developer." typeSpeed={1000} delay={2000} textClass="text-3xl" />
+                <TypeWriter text="I'm a Developer." typeSpeed={1000} delay={2000} textClass="text-xl sm:text-4xl" />
             </div>
-            <div className="w-full py-10 px-[10vw] spacing-wide overflow-hidden">
+            <div className="w-full py-4 sm:py-10 px-[10vw] spacing-wide overflow-hidden">
                 <Animation delay={3000} animation="animate-slide-in-up">
-                    <p className="text-3xl md:text-5xl text-neon-blue">About Me</p>
+                    <p className="text-2xl md:text-5xl text-neon-blue">About Me</p>
                 </Animation>
 
                 <Animation delay={3200} animation="animate-slide-in-up">

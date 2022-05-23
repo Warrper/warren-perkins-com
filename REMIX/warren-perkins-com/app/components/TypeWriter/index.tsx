@@ -14,7 +14,7 @@ interface TypeWriterProps {
 export default function TypeWriter({ textClass, text, typeSpeed, delay, noBlink }: TypeWriterProps) {
     return (
         <div
-            className="flex items-center justify-center text-white text-5xl md:text-7xl spacing-default"
+            className="flex items-center justify-center text-white text-4xl sm:text-5xl md:text-7xl spacing-default"
             style={{
                 animation: `hideShow ${delay + 50}ms`,
             }}
