@@ -20,7 +20,7 @@ export default function TypeWriter({ textClass, text, typeSpeed, delay, noBlink 
             }}
         >
             <div
-                className={`border-r-[3px] border-white whitespace-nowrap overflow-hidden font-inconsolata type-animation ${
+                className={`border-r-[3px] border-white whitespace-nowrap overflow-hidden font-inconsolata ${
                     textClass ? textClass : ''
                 }`}
                 style={{

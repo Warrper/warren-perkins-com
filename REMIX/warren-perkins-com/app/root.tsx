@@ -1,6 +1,7 @@
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import styles from './styles/tailwind.css';
+import tailwindStyles from './styles/tailwind.css';
+import globalStyles from './styles/global.css';
 import Nav from '~/components/Nav';
 
 export const links: LinksFunction = () => [
@@ -19,7 +20,11 @@ export const links: LinksFunction = () => [
     },
     {
         rel: 'stylesheet',
-        href: styles,
+        href: tailwindStyles,
+    },
+    {
+        rel: 'stylesheet',
+        href: globalStyles,
     },
 ];
 
