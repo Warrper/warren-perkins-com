@@ -15,7 +15,11 @@ export default function Nav({ navItems }: NavProps) {
                         return (
                             <a
                                 key={item.link}
-                                className="text-grey-400 no-underline p-1 scale-100 cursor-pointer hover:scale-150 transition-all duration-300 "
+                                className={
+                                    location.pathname === item.link
+                                        ? 'text-neon-blue no-underline p1 cursor-default pointer-events-none'
+                                        : 'text-grey-400 no-underline p-1 scale-100 cursor-pointer hover:scale-150 transition-all duration-30'
+                                }
                                 href={`${item.link}`}
                             >
                                 {item.text}

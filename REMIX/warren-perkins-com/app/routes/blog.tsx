@@ -1,3 +1,5 @@
+import BlogCard from '~/components/BlogCard';
+
 export default function Blog() {
-    return <h1>Blog</h1>;
+    return <div className="flex flex-wrap justify-evenly"></div>;
 }
