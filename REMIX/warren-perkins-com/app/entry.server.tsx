@@ -12,6 +12,14 @@ export default function handleRequest(
 
     responseHeaders.set('Content-Type', 'text/html');
 
+    const cacheControl = responseHeaders.get('Cache-Control');
+    if (!cacheControl) {
+        responseHeaders.set(
+            'Cache-Control',
+            'public, max-age=86400, s-maxage=2628000, stale-while-revalidate=31560000'
+        );
+    }
+
     return new Response('<!DOCTYPE html>' + markup, {
         status: responseStatusCode,
         headers: responseHeaders,

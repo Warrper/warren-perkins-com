@@ -1,5 +1,5 @@
 module.exports = {
-    content: ['./app/**/*.{js,ts,jsx,tsx}'],
+    content: ['./app/**/*.{js,ts,jsx,tsx,md,mdx}'],
     theme: {
         extend: {
             colors: {
@@ -22,5 +22,7 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography'),
+    ],
 };
