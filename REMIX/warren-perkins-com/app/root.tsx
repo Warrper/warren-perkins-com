@@ -47,7 +47,7 @@ export default function App() {
                         { text: 'Blog', link: '/blog' },
                         { text: 'Home', link: '/', exclude: ['/'] },
                         {
-                            text: 'Gihub',
+                            text: 'Github',
                             link: 'https://github.com/warrper',
                         },
                     ]}

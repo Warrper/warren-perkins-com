@@ -10,8 +10,8 @@ export default function Nav({ navItems }: NavProps) {
         <nav className="text-white fixed font-lato w-screen flex p-2 sm:p-4 border-b-2 border-[#45515C] bg-dark-blue shadow-lg">
             <ul className="flex flex-row list-none m-0 p-0 w-full h-full justify-around text-xl sm:text-2xl">
                 {navItems
-                    .filter((item) => !item.exclude?.includes(location.pathname))
-                    .map((item) => {
+                    ?.filter((item) => !item.exclude?.includes(location.pathname))
+                    ?.map((item) => {
                         return (
                             <a
                                 key={item.link}

@@ -11,9 +11,9 @@ font-lato rounded-md scale-100 cursor-pointer hover:scale-125 transition-all dur
 
 export default function Button({ href, onClick, children }: ButtonProps) {
     return href ? (
-        <Link className={className} to={href} onClick={onClick}>
+        <a href={href} className={className}>
             {children}
-        </Link>
+        </a>
     ) : (
         <button className={className} onClick={onClick}>
             {children}

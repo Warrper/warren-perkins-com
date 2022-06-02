@@ -27,7 +27,6 @@ export default function Index() {
     const hasSeenAnimation = browserStore?.get('sessionStorage', 'hasSeenAnimation');
     const animationEnd = useDelay(3000);
     useEffect(() => {
-        console.log(hasSeenAnimation);
         if (animationEnd) {
             browserStore.set('sessionStorage', 'hasSeenAnimation', 'true');
         }
