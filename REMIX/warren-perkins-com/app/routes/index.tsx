@@ -7,6 +7,7 @@ import Button from '~/components/Button';
 import { browserStore } from '~/utils/browserStore.client';
 import useDelay from '~/hooks/useDelay';
 import { useEffect } from 'react';
+import { ClientOnly } from 'remix-utils';
 
 export const links: LinksFunction = () => [...typeWriterLinks()];
 
@@ -23,15 +24,7 @@ const TextLink = ({ children, href }: ITextLink) => {
     );
 };
 
-export default function Index() {
-    const hasSeenAnimation = browserStore?.get('sessionStorage', 'hasSeenAnimation');
-    const animationEnd = useDelay(3000);
-    useEffect(() => {
-        if (animationEnd) {
-            browserStore.set('sessionStorage', 'hasSeenAnimation', 'true');
-        }
-    }, [animationEnd]);
-
+function Content({ hasSeenAnimation }: { hasSeenAnimation: boolean }) {
     return (
         <div className="w-full font-lato text-xl md:text-3xl">
             <div className="w-full p-4 sm:p-10">
@@ -104,5 +97,28 @@ export default function Index() {
                 </Animation>
             </div>
         </div>
+    );
+}
+
+function useSeenAnimation() {
+    const hasSeenAnimation = browserStore?.get('sessionStorage', 'hasSeenAnimation');
+    const animationEnd = useDelay(3000);
+    useEffect(() => {
+        if (animationEnd) {
+            browserStore.set('sessionStorage', 'hasSeenAnimation', 'true');
+        }
+    }, [animationEnd]);
+
+    return !!hasSeenAnimation;
+}
+
+export default function Index() {
+    const hasSeenAnimation = useSeenAnimation();
+
+    // Forces a re-render on client side so hasSeenAnimation is read correctly
+    return (
+        <ClientOnly fallback={<Content hasSeenAnimation={false} />}>
+            {() => <Content hasSeenAnimation={hasSeenAnimation} />}
+        </ClientOnly>
     );
 }
