@@ -1,18 +1,9 @@
-import * as creatingMyWebsite from './creating-my-website.mdx';
-
-import { json } from '@remix-run/node'; // or "@remix-run/cloudflare"
 import { useLoaderData } from '@remix-run/react';
 import BlogCard from '~/components/BlogCard';
-
-function postFromModule(mod: any) {
-    return {
-        slug: mod.filename.replace(/\.mdx?$/, ''),
-        ...mod.attributes.meta,
-    };
-}
+import { getPosts } from '~/server/blog.server';
 
 export async function loader() {
-    return json([postFromModule(creatingMyWebsite)]);
+    return getPosts();
 }
 
 export default function Blog() {
