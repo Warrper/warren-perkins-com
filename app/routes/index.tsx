@@ -58,7 +58,7 @@ function Content({ hasSeenAnimation }: { hasSeenAnimation: boolean }) {
                     <p className="py-4">
                         I'm a full stack web developer from the North of England. I currently work at the advertising
                         agency <TextLink href="https://havaslynx.com/">Havas Lynx</TextLink>, where I have been a full
-                        time developer for over 2 years.
+                        time developer for 3 Years.
                     </p>
                 </Animation>
 

@@ -21,7 +21,7 @@ import * as cloudfront from './cloudfront';
     });
 
     await cloudfront.distribution({
-        aliases: ['dev.warrenperkins.com'],
+        aliases: ['warrenperkins.com'],
         projectName,
         apigw,
         cId,

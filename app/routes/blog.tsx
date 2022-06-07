@@ -1,5 +1,5 @@
-import { LinksFunction } from '@remix-run/node';
-import { Outlet } from 'react-router-dom';
+import { LinksFunction } from '@remix-run/node'
+import { Outlet } from '@remix-run/react';
 
 import onedark from '~/styles/onedark.css';
 

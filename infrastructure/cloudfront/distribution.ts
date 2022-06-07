@@ -43,7 +43,7 @@ export async function distribution(conf: DistributionConfig) {
     new aws.cloudfront.Distribution(
         `${conf.projectName}-cdn`,
         {
-            aliases: ['dev.warrenperkins.com'],
+            aliases: conf.aliases,
             defaultCacheBehavior: {
                 allowedMethods: ['POST', 'GET', 'HEAD', 'PATCH', 'DELETE', 'OPTIONS', 'PUT'],
                 cachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
