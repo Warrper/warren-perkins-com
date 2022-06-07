@@ -9,9 +9,6 @@ import BlogContent from '~/components/BlogContent';
 
 <BlogContent>
     # {attributes.meta.title}
-    I've been tinkering with this site every now and then in my free time and I have settled on what I think is the best
-    technology stack to use.
-
     My initial build of this site was a [Preact](https://preactjs.com/) site that was statically hosted in an [S3](https://aws.amazon.com/s3/)
     bucket and served via [Cloudfront](https://aws.amazon.com/cloudfront/). I used [Vite](https://vitejs.dev/) as the build tool and had
     [Github actions](https://github.com/features/actions) setup to automatically deploy to S3 and clear the cloudfront cache.
@@ -123,4 +120,9 @@ import BlogContent from '~/components/BlogContent';
     Amazon API Gateway. When a page is served to the user, that page will also contain some links to static assets e.g css files, js files and images. These static assets are stored
     in the S3 bucket and served in the same way, cloudfront will either served a cached version of the asset or request for the asset from S3.
 
+    ### The future
+
+    I plan on continually working on and improving this site in my free time as well as adding new blog posts. If you found this interesting and would like to see the source code
+    of this site it is all publicly available on my [Github](https://github.com/Warrper/warren-perkins-com).
+    <br />
 </BlogContent>
