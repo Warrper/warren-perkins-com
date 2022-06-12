@@ -5,7 +5,7 @@ export default {
 };
 
 const args = {
-    title: 'Blog Title',
+    title: 'This is a large title that is a total of 55 characters.',
     href: '/blog/post',
     description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel mattis odio. Quisque ultricies feugiat lectus eu egestas',

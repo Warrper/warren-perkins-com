@@ -1,4 +1,5 @@
 import { useLoaderData } from '@remix-run/react';
+import { useEffect } from 'react';
 import BlogCard from '~/components/BlogCard';
 import { getPosts } from '~/server/blog.server';
 
@@ -8,6 +9,12 @@ export async function loader() {
 
 export default function Blog() {
     const posts = useLoaderData<any[]>();
+
+    useEffect(() => {
+        if (!Array.isArray(posts)) {
+            location.reload();
+        }
+    }, [posts]);
 
     return (
         <div className="flex flex-wrap justify-evenly">
