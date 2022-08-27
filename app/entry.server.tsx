@@ -11,6 +11,9 @@ export default function handleRequest(
     let markup = renderToString(<RemixServer context={remixContext} url={request.url} />);
 
     responseHeaders.set('Content-Type', 'text/html');
+    responseHeaders.set('Strict-Transport-Security', "31536000");
+    responseHeaders.set('X-Frame-Options', 'SAMEORIGIN');
+    responseHeaders.set('Referrer-Policy', "strict-origin");
 
     const cacheControl = responseHeaders.get('Cache-Control');
     if (!cacheControl) {
