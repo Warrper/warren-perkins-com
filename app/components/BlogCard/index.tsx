@@ -1,5 +1,4 @@
 import { Link } from '@remix-run/react';
-import Button from '~/components/Button';
 
 interface BlogCardProps {
     title: string;

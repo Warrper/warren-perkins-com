@@ -1,0 +1,181 @@
+---
+meta:
+    title: Nicer Reducers using object lookups
+    description: How to use an object lookup to create a reducer with nice type completion and extendability
+links:
+---
+
+import BlogContent from '~/components/BlogContent';
+
+<BlogContent>
+# {attributes.meta.title}
+
+A common pattern in react is to use a reducer to manage complex state, usually when you see reducer code it will look something like this (sourced from the [React docs](https://reactjs.org/docs/hooks-reference.html#usereducer)):
+
+```ts
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment':
+            return { count: state.count + 1 };
+        case 'decrement':
+            return { count: state.count - 1 };
+        default:
+            throw new Error();
+    }
+}
+
+function Counter() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    return (
+        <>
+            Count: {state.count}
+            <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+            <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+        </>
+    );
+}
+```
+
+This is a perfectly fine approach and works well a lot of the time, however I think there are a few downsides
+to using a switch statement that can be solved by converting the reducer to an object lookup.
+
+-   Extending or overwriting a switch statement is more difficult and verbose than it is when using an object.
+-   Typing an object is easier and clearer than attempting to enforce types on a switch statement
+-   My personal preference is to avoid the use of switch statements when I can
+
+If you want to just jump straight to the code I have put a full example on [CodeSandbox](https://codesandbox.io/s/react-state-reducer-pattern-wukw3l?file=/src/App.tsx)
+
+Firstly we need to setup some generic types for creating reducers:
+
+```ts
+// src/store/types.ts
+export type ReducerAction<T extends {}> = Partial<T> & {
+    type: string;
+};
+
+export type ReducerFunction<T> = (state: T, action: ReducerAction<T>) => T;
+
+export interface ReducerObject<T> {
+    [key: string]: ReducerFunction<T>;
+}
+```
+
+The `ReducerAction` type is used to define the state that we are using. Partial is used here so that when we're running the reducer `dispatch` function `type` is the only required attribute.
+
+The `ReducerFunction` is used to generically define a state mutation.
+
+Then `ReducerObject` is used to define the set of actions used to mutate the state.
+
+As well as these types I have also defined a utility function that takes a `ReducerObject` and returns a reducer that can be passed to `useReducer`.
+
+```ts
+// src/store/utils/createReducerFromObject.ts
+import { ReducerAction, ReducerObject } from '../types';
+
+export default function createReducerFromObject<T>(reducerObject: ReducerObject<T>) {
+    return (state: T, action: ReducerAction<T>) => {
+        if (!Object.keys(reducerObject).includes(action.type)) {
+            throw new Error(`Unhandled type: ${action.type}`);
+        } else {
+            return reducerObject[action.type](state, action);
+        }
+    };
+}
+```
+
+This utility also has the nice bonus of providing us with a generic error if we dispatch an unhandled action to the reducer.
+
+Now that we have the types and the utility function we can define some state and a reducer. In [CodeSandbox](https://codesandbox.io/s/react-state-reducer-pattern-wukw3l?file=/src/App.tsx) I have used the example of a counter to keep things simple.
+
+Firstly lets define the state:
+
+```ts
+// src/store/counter/state.ts
+export interface CounterState {
+    count: number;
+}
+
+export const defaultCounterState: CounterState = {
+    count: 0,
+};
+```
+
+Then lets define the reducer:
+
+```ts
+// src/store/counter/reducer.ts
+import { ReducerObject } from '../types';
+import { CounterState } from './state';
+
+export const COUNTER_ACTIONS = {
+    INCREMENT: 'INCREMENT',
+    DECREMENT: 'DECREMENT',
+};
+
+export const counterObjectReducer: ReducerObject<CounterState> = {
+    [COUNTER_ACTIONS.INCREMENT]: (state, action) => {
+        return {
+            ...state,
+            count: state.count + 1,
+        };
+    },
+    [COUNTER_ACTIONS.DECREMENT]: (state, action) => {
+        return {
+            ...state,
+            count: state.count - 1,
+        };
+    },
+};
+```
+
+This setup gives you correct type completion when adding reducer actions and enforces that all your reducer actions are defined correctly.
+Also note here the constant `COUNTER_ACTIONS`, I think its a good pattern to setup an object with all your reducer actions in so that you can be sure your always dispatching correctly.
+
+Finally lets use this reducer to manage some state:
+
+```ts
+// src/App.tsx
+import './styles.css';
+import { defaultCounterState } from './store/counter/state';
+import { counterObjectReducer, COUNTER_ACTIONS } from './store/counter/reducer';
+import createReducerFromObject from './store/utils/createReducerFromObject';
+import { useReducer } from 'react';
+
+const counterReducer = createReducerFromObject(counterObjectReducer);
+
+export default function App() {
+    const [counterState, counterDispatch] = useReducer(counterReducer, defaultCounterState);
+
+    return (
+        <div className="App">
+            <h1>Counter: {counterState.count}</h1>
+            <button onClick={() => counterDispatch({ type: COUNTER_ACTIONS.DECREMENT })}>-</button>
+            <button onClick={() => counterDispatch({ type: COUNTER_ACTIONS.INCREMENT })}>+</button>
+        </div>
+    );
+}
+```
+
+To a define the reducer you pass the counterObjectReducer to the utility function and you get a fully typed reducer.
+When accessing counterState or counterDispatch we will get full type completion.
+
+Earlier I mentioned that using an object reducer makes it much easier to overwrite or extend a reducer. Lets say for example we wanted this specific counter to increment +5 each count rather than +1. We can use object spreading to achieve this easily:
+
+```ts
+const counterReducer = createReducerFromObject({
+    ...counterObjectReducer,
+    [COUNTER_ACTIONS.INCREMENT]: (state, action) => {
+        return {
+            ...state,
+            count: state.count + 5,
+        };
+    },
+});
+```
+
+I think that this approach to writing reducers is much nicer than the standard approach and will make life much easier when you have complex state that needs to be managed.
+
+<br />
+</BlogContent>
