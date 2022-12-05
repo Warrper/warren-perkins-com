@@ -56,8 +56,7 @@ function Content({ hasSeenAnimation }: { hasSeenAnimation: boolean }) {
 
                 <Animation delay={hasSeenAnimation ? 0 : 3200} animation="animate-slide-in-up">
                     <p className="py-4">
-                        I'm a full stack web developer from the North of England. I'm currently working as a freelance developer, I have been a full
-                        time developer for over 4 Years.
+                        I'm a full stack web developer from the North of England. I'm currently working as a freelance developer.
                     </p>
                 </Animation>
 
