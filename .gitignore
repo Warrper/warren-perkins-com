@@ -1,8 +1,11 @@
 node_modules
-.DS_Store
-dist
-dist-ssr
-*.local
-.vscode
-/api/*
+
+/.cache
+/build
+/public/_static
+/public/build
 .env
+remix.config.js
+/server
+
+/app/styles/tailwind.css

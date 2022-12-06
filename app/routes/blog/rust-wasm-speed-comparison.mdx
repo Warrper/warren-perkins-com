@@ -1,0 +1,151 @@
+---
+meta:
+    title: How fast is WebAssembly and Rust?
+    description: Demo of the speed difference between rust compiled to wasm and raw js
+    image: https://warrenperkins.com/_static/site-assets/blog/posts/rust-wasm-speed-comparison/rust-webassembly.jpg
+    og:type: website
+    og:title: How fast is WebAssembly and Rust?
+    og:description: Demo of the speed difference between rust compiled to wasm and raw js
+    og:image: https://warrenperkins.com/_static/site-assets/blog/posts/rust-wasm-speed-comparison/rust-webassembly.jpg
+    twitter:card: summary_large_card
+    twitter:title: How fast is WebAssembly and Rust?
+    twitter:description: Demo of the speed difference between rust compiled to wasm and raw js
+    twitter:image: https://warrenperkins.com/_static/site-assets/blog/posts/rust-wasm-speed-comparison/rust-webassembly.jpg
+links:
+---
+
+import BlogContent from '~/components/BlogContent';
+
+<BlogContent>
+# {attributes.meta.title}
+
+If you're unaware of its existence [WebAssembly](https://webassembly.org/) is an exciting development in the Web development world.
+WebAssembly is a binary format designed for the Web, this means that you can compile programming languages like C++ and Rust to a format
+that can be executed in the web browser or by a runtime like NodeJS.
+
+I thought it would be interesting to try this out and compare the speed of executing code in raw JavaScript and then executing similar code in WebAssembly.
+I decided to go with [Rust](https://www.rust-lang.org/) as my language of choice as the support and tooling for WebAssembly is great.
+
+For the comparison I will be calculating prime numbers, I've chose this as prime number calculation scales badly meaning that the
+higher the prime number the more time it takes to calculate.
+
+## Setting up the server
+
+I used a basic TypeScript, NodeJS, and Express setup to create the routes for the server so I could ping the endpoints and test the code.
+
+```js
+import express from 'express';
+import http from 'http';
+import config from './config';
+
+const port = '3001';
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// add routers to app
+config.routes.forEach((routeName) => {
+    const route = require(`./routes/${routeName}`);
+    route.default(app);
+});
+
+// ping back URL
+app.get('/', (req, res) => {
+    res.status(200).send({ status: 'OK' });
+});
+
+const server = http.createServer(app);
+server.listen(port).on('listening', () => {
+    console.log(`Running on ${port}`);
+});
+```
+
+I calculated the nth prime number in JavaScript using [this](https://www.tutorialspoint.com/finding-the-nth-prime-number-in-javascript) code.
+
+I then used `process.hrtime()` to track the time it took to calculate the prime number.
+
+```ts
+const num = Number(req.params.number);
+
+var start = process.hrtime();
+const result = findPrime(num);
+var elapsedSeconds = process.hrtime(start)[0];
+var elapsedNano = process.hrtime(start)[1] / 1000000;
+
+res.send({
+    prime: result,
+    time: `${elapsedSeconds}s and ${elapsedNano.toFixed(3)}ms`,
+});
+```
+
+I then tested this by calculating the one millionth prime number, it took 2.5 seconds to calculate.
+![js speed](https://warrenperkins.com/_static/site-assets/blog/posts/rust-wasm-speed-comparison/js-prime-million.png)
+
+## Setting up Rust
+
+The Rust team have made it super easy to create a WebAssembly project and I made use of [this](https://rustwasm.github.io/docs/book/) great tutorial to get setup.
+
+I started with the [wasm-game-of-life template](https://github.com/rustwasm/wasm-pack-template).
+
+To calculate the primes in Rust I used the [primal](https://crates.io/crates/primal) crate.
+
+```rust
+mod utils;
+use primal::{StreamingSieve};
+
+use wasm_bindgen::prelude::*;
+
+// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
+// allocator.
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
+#[wasm_bindgen]
+pub fn find_nth_prime(num: usize) -> usize {
+    let p = StreamingSieve::nth_prime(num);
+    p
+}
+```
+
+Then to build this, all I have to do is run `wasm-pack build --target nodejs` and I have a WebAssembly module ready to go.
+
+To make this code available to my Node project I added it to my dependencies in my `package.json`
+
+```json
+"dependencies": {
+    "express": "^4.18.1",
+    "node_primes": "file:./rust/pkg"
+}
+```
+
+Then I could use the find_nth_prime function as if it were a normal JavaScript module
+
+```ts
+import { find_nth_prime } from 'node_primes';
+
+...
+
+const num = Number(req.params.number);
+var start = process.hrtime();
+const result = find_nth_prime(num).toString();
+var elapsedSeconds = process.hrtime(start)[0];
+var elapsedNano = process.hrtime(start)[1] / 1000000;
+res.send({
+    prime: result,
+    time: `${elapsedSeconds}s and ${elapsedNano.toFixed(3)}ms`,
+});
+```
+
+I again tested this by calculating the one millionth prime number, it took 2ms seconds to calculate, that is ~1,250 times faster!
+![rust speed](https://warrenperkins.com/_static/site-assets/blog/posts/rust-wasm-speed-comparison/rust-prime-million.png)
+
+## Conclusion
+
+You won't always see such drastic speed improvements when using WebAssembly over raw JavaScript as this is quite a contrived example. With complex tasks large chunks of memory
+will need to be copied over into the WebAssembly memory space, these copies are often times slower than simply executing the task in raw JavaScript. That being said it's cool
+to see the potential of WebAssembly and I hope to see some interesting uses of it in the future.
+
+<br />
+</BlogContent>
